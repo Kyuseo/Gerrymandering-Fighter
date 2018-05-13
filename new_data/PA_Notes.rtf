@@ -1,0 +1,571 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf820
+{\fonttbl\f0\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+{\info
+{\author jrodden}
+{\*\company Stanford University}}\margl1440\margr1440\vieww28800\viewh15860\viewkind1\viewscale125
+\deftab720
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab720\ri0\partightenfactor0
+
+\f0\fs24 \cf0 Pennsylvania notes\
+Kyle Dropp and Jonathan Rodden\
+\
+\
+Remaining unmatched precincts:\
+\
+Salisbury TWP 05 DIST, county 077.  It seems possible that this is identified incorrectly in the census boundary file, as it is not contiguous with the rest of Salisbury township, and we do not have corresponding electoral data.  \
+\
+Warren Township voting district in county 55. \
+\
+\
+Variable Names:\
+-pa_geo_id - row identifier from raw Census VTD file\
+-pa_vote_id - row identifier from raw vote total file\
+-VAP - Voting Age Population from Census FTP\
+-Pop100 - full population from Census FTP\
+-STATEFP10 - state code from census\
+-COUNTYFP10 - county code from census\
+-VTDST10 - voting district code from census\
+-GEOID10 - geo identifier from census\
+-VTDI10 - voting code from census\
+-Name10 - voting district string - best description\
+-NameLSAD10 - voting district string, with ``voting district at end\
+-ALAND10 - land\
+-AWATER10 - water\
+-INTPLAT10 - latitude\
+-INTPTLON10 - longitude\
+-LogRecNo - Census FTP identifier\
+-pa_agg - cumulative VAP for precincts where totals were summed and allocated by VAP to VTDs\
+-fraction - VAP/pa_agg\
+\
+\
+Commonwealth of Pennsylvania\
+Department of State\
+Bureau of Commissions, Elections and Legislation\
+Precinct Election Returns\
+Electronic Data File Transmittal and Instructions\
+bcel@dos.state.pa.us\
+www.dos.state.pa.us\
+\
+\
+Data Extracted:                 April 21, 2011	\
+Requested Year                  2010\
+Requested Election:            General \
+Record Count:                   121,578\
+\
+\
+The text data file, PRCRES.TXT, is an ASCII text, comma delimited\
+file.  The field descriptions, maximum length, and data type are listed \
+below in the order in which they appear (from left to right) in the file.\
+\
+\
+                                        	 Max\
+Field Description                  	Length       	Data Type\
+--------------------------------------------------------------------------\
+Election Year                          	 4       		Numeric\
+Election Type (G = General)	 	 1       		Character\
+County Code *			 2       		Numeric\
+Precinct Code			 7      		Numeric\
+Candidate Vote Office		 2       		Numeric\
+Candidate Office Rank		 2       		Numeric\
+Candidate District			 3       		Numeric\
+Candidate Party Code*		 3       		Character\
+Candidate Ballot Position		 2      		Numeric\
+Candidate Office Code *		 3      	 	Character\
+Party Code			 3		Character\
+Candidate Number			 7       		Numeric\
+Candidate Last Name		25      		Character\
+Candidate First Name		16      		Character\
+Candidate Middle Name		16      		Character\
+Candidate Suffix			5       		Character\
+Vote Total			7       		Numeric\
+U.S. Congressional District		2       		Numeric\
+State Senatorial District		2       		Numeric\
+State House District		3       		Numeric\
+Municipality Type Code *		1       		Numeric\
+Municipality Name			23      		Character\
+Municipality Breakdown Code 1	1       		Character\
+Municipality Breakdown Name 1	21      		Character\
+Municipality Breakdown Code 2	1       		Character\
+Municipality Breakdown Name 2	21      		Character\
+Bi-County Code **			2       		Numeric\
+MCD Code			3       		Numeric\
+FIPS Code			3       		Numeric\
+VTD code			4       		Numeric\
+--------------------------------------------------------------\
+ * See tables below.\
+** If a municipality is located in more than 1 county (i.e. it \
+   crosses county lines), this is the code of the other county.\
+\
+\
+Election Type Table\
+-------------------\
+P Primary\
+G General\
+M Municipal\
+S Special\
+\
+\
+County Code Table\
+-----------------\
+01 Adams\
+02 Allegheny\
+03 Armstrong\
+04 Beaver\
+05 Bedford\
+06 Berks\
+07 Blair\
+08 Bradford\
+09 Bucks\
+10 Butler\
+11 Cambria\
+12 Cameron\
+13 Carbon\
+14 Centre\
+15 Chester\
+16 Clarion\
+17 Clearfield\
+18 Clinton\
+19 Columbia\
+20 Crawford\
+21 Cumberland\
+22 Dauphin\
+23 Delaware\
+24 Elk\
+25 Erie\
+26 Fayette\
+27 Forest\
+28 Franklin\
+29 Fulton\
+30 Greene\
+31 Huntingdon\
+32 Indiana\
+33 Jefferson\
+34 Juniata\
+35 Lackawanna\
+36 Lancaster\
+37 Lawrence\
+38 Lebanon\
+39 Lehigh\
+40 Luzerne\
+41 Lycoming\
+42 McKean\
+43 Mercer\
+44 Mifflin\
+45 Monroe\
+46 Montgomery\
+47 Montour\
+48 Northampton\
+49 Northumberland\
+50 Perry\
+51 Philadelphia\
+52 Pike\
+53 Potter\
+54 Schuylkill\
+55 Snyder\
+56 Somerset\
+57 Sullivan\
+58 Susquehanna\
+59 Tioga\
+60 Union\
+61 Venango\
+62 Warren\
+63 Washington\
+64 Wayne\
+65 Westmoreland\
+66 Wyoming\
+67 York\
+\
+\
+Municipality Type Codes\
+-----------------------\
+2 City\
+4 Township\
+5 Town\
+6 Borough\
+\
+\
+Municipality Breakdown Codes\
+----------------------------\
+D District\
+W Ward\
+P Precinct\
+X Other\
+\
+\
+Office Code Table\
+------------------------------------------------------------\
+ 1 USP President of the United States\
+ 2 USS United States Senator\
+ 3 GOV Governor\
+ 4 LTG Lieutenant Governor\
+ 5 ATT Attorney General\
+ 6 AUD Auditor General\
+ 7 TRE State Treasurer\
+ 8 SPM Justice of the Supreme Court\
+ 9 SPR Judge of the Superior Court\
+10 CCJ Judge of the Commonwealth Court\
+11 USC Representative in Congress\
+12 STS Senator in the General Assembly\
+13 STH Representative in the General Assembly\
+\
+\
+Party Code Table\uc0\u8706 \
+--------------------------\
+R  Republican Party\
+D  Democratic Party\
+OTH  Other\
+\
+First three letters in name of all election variables are office codes above, followed by:  \
+DV = Democratic votes\
+RV = Republican votes\
+P = Democratic percent\
+\
+AV = Average Democratic vote share (average vote share over all statewide and presidential races 2004-2008)\
+NDV = Normal Democratic votes [AV*2008 presidential turnout]\
+NRV = Normal Republican votes [(1-AV)*2008 presidential turnout]\
+\
+\
+\
+Matching notes: \
+\
+County 1: \
+Carroll Valley 1 to Carroll Valley Borough\
+Carroll VAlley 2 to Carroll Valley\
+\
+County 3: \
+Aspinwall 3 to Aspinwall 4\
+Duplicate Baldwin 1 and 2. One set refers to the township, the other refers to the city.\
+Elizabeth city wards in the two files do not match well. The precincts in the vote file were summed and allocated across 12 VTDs.\
+Mc Candless Ward 1 Precincts 1 through 4 were summed and allocated by VAP to Mc Candless 1-1, 1-2, 1-3\
+Mc Candless Ward 3 Precincts 1 through 3 were summed and allocated by VAP to Mc Candless 3-1, 3-2, 3-3\
+\
+Oakmont has precincts 1,2,3,4,5,6 in vote file and 1,2,3,4,5,7 in VTD. 6 was linked to 7 in VTD.\
+O'Hara 1-1 and 4-1 summed and allocated by VAP to OHARA TWP WD 1-1 and WD 4-1\
+Pittsburgh 16-7 and 16-13 summed and allocated by VAP to Pittsburgh WD 16-7 and 16-13.\
+\
+County 5: \
+Apollo to Apollo Wd 1 and Apollo Wd 2\
+Brady's Bend to Brady's Bend TWP 1 and Brady's Bend TWP 2\
+Washington to Washington Northern and Washington Southern \
+\
+County 7: \
+Darlington first row to Darlington TWP\
+Darlington second row to Darlington\
+\
+County 9: \
+Broad TOP 1 to Broad TOP TWP 1 and Broad TOP TWP 2\
+Southampton and southampton 3 summed and allocated by VAP to south hampton two vtd 1 and southhampton two vtd 03\
+\
+County 11: \
+Robeson 1 through 4 summed and allocated by VAP to four VTDs.\
+West Lawn 1 and Wyomissing 1 summed and allocated by VAP to West Lawn Dist 1 and Wyomissing Dist 1. \
+No match for Spring 9 in vote file. \
+No match for Jackson 3. High votes/VAP ratio. \
+\
+\
+County 15: \
+The following decisions were based on votes/VAP ratio\
+Burlington first row to Burlington TWP\
+Burlington second row to Burlington\
+Canton first row to Canton TWP\
+Canton second row to Canton WD\
+East Caln 1 and 2 summed and allocated by VAP to E Caln 2 and East Caln TWP\
+Monroe first row to Monroe TWP\
+Monroe second row to Monroe \
+Rome first row to Rome TWP\
+Rome second row to Rome\
+Troy first row to Troy TWP\
+Troy second row to Troy\
+Wyalusing first row to Wyalusing TWP\
+Wyalusing second row to Wyalusing\
+\
+County 17: \
+Richland has 4 in vote and 2 in VTD. The vote totals were summed and allocated to Richland Lower and Richland Upper in the VTD file. \
+\
+County 19: \
+Butler x 1-6 to Butler TWP 1-6\
+Butler w 1-5 to Butler WD 1-5\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ri0\partightenfactor0
+\cf0 CONNOQUENESSING first row to CONNOQUENESSING TWP\
+CONNOQUENESSING second row to CONNOQUENESSING voting district\
+Fairview first row to Fairview TWP\
+Fairview second row to Fairview voting district\
+SLIPPERY ROCK first row to SLIPPERY ROCK TWP\
+SLIPPERY ROCK second row to SLIPPERY ROCK voting district\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab720\ri0\partightenfactor0
+\cf0 County 21:\
+Adams Elton 1 and Elton 2 summed and allocated to Adams Elton 1 and 2\
+Geistown 1, 2, 3 summed and allocated to Geistown 1 and 2. \
+Jackson 1, 3 and VINCO summed and allocated to Jackson TWP 1, Jackson TWP 3, and Jackson TWP VINCO\
+Johnson Cambria City to JOhnson Cambria City and Johnson Cambria City 1-A\
+Johnson Ward 17 has 5 precincts vs. 4 in VTD. The precincts were summed and allocated to the four VTDs.\
+Upper Yoder five precincts summed and allocated to five precincts in VTD. There was reprecincting. \
+West Caroll North and south combined TO West Carroll North and South. There was reprecincting. \
+\
+County 25: \
+Banks 4, Coxeville, Leviston summed and allocated by VAP to Banks Auden, Banks Coxeville, Banks Leviston\
+\
+County 27: \
+Rush north and north central combined to Rush TWP North in VTD file. \
+South Philipsburg and Philipsburg 1 summed and allocated by VAP to South Philipsburg and Philipsburg VTD 1\
+Spring Township was combined and allocated by VAP.\
+\
+County 29: \
+East Caln 1 to East Caln TWP\
+East Caln 2 to E Caln 2\
+East Malborough East, West, and South to East malborough East, West and S. Re-precincting. \
+New Garden South 1 and South 2 were combined TO New Garden TWP Pct South. \
+Schulkyll has four in voter file and 5 in VTD. The  votes were summed and allocated to the five precincts in the VTD. \
+Upper Uwchlan  TWP 3 to Upper Uwchlan 1, and vice versa, based on votes/vap ratio. \
+\
+\
+County 31: \
+There are two of the following: Clarion X 1 and Clarion X 2. One refers to Clarion township and the other refers to Clarion VTD\
+Knox first row to Knox Voting district\
+Knox second row to Knox TWP\
+Toby to Toby TWP East and Toby TWP West\
+\
+County 33: \
+Burnside first row to Burnside TWP\
+Burnside second row to Burnside\
+\
+County 35: \
+Beech Creek first row to Beech Creek Borough\
+Beech Creek second row to Beech Creek TWP\
+\
+County 37: \
+Benton first row to Benton \
+Benton second row to Benton TWP\
+\
+County 39: \
+Venango first row to Venango TWP\
+Venango second row to Venango\
+Woodcock first row to Woodcock TWP\
+Woodcock second row to Woodcock voting district\
+\
+County 41: \
+No match for Lower Allen Annex in VTD\
+South Middleton TWP 3 TO South Middleton TWP 2, and vice versa, based on votes/vap ratio. \
+\
+\
+County 45: \
+Bethel 1 through 4 summed and allocated to Bethel 1 through 4. \
+Chadds Ford NE and SE summed TO Chadds Ford TWP\
+Chester Ward 9 Precincts 1-4 summed and allocated to four precincts in VTD. \
+Clifton heights five precincts summed and allocated to five precincts in VTD. \
+Concord Central East, Central Weest, Foxhill, Maris Grove, Southcentral, Southwest, Central, Northern, Southeast and West were summed and allocated to Concord Central, Northern, Southeast and Southwest in the VTD file. \
+Edgemont 1 & 2 TO Edgemont TWP.\
+Middletown 12 to 8. There are three precincts per ward in the vote file and two precincts per ward in the VTD file. In each ward, precincts were summed and allocated to two precincts in the VTD file. \
+Nether Providence has 14 observations in the vote file and 6 in the VTD file. The precinct vote totals were summed and allocated to the six VTDs by VAP. \
+Radnor 3-1 to Radnor wd 3 pct 1 cd 165 and wd 3 pct 1 cd 167\
+Radnor 3-2 to Radnor wd 3 pct 2 cd 165 and wd 3 pct 2 cd 166\
+Thornbury has 5 observations in the vote file and 2 in the VTD file. The precinct vote totals were summed and allocated to the two VTDs by VAP. \
+Upper Darby 5-1 and 5-2 summed and allocated by VAP to UD 5-1 and 5-2\
+Upper Darby 3-9, 3-10 and 3-11 summed and allocated by VAP to UD 3-9 and 3-10.\
+Upper Darby 6-9 not matched. Unlikely votes/VAP ratio. \
+Upper Darby 6-12 and 6-13 combined TO 6-12 and 6-13\
+Upper Darby 6-8 and 6-14 combined TO 6-8 and 6-14\
+Upper Darby 7-10 and 7-12 summed and allocated by VAP to UD 7-10\
+\
+County 49: \
+Mc Kean first row to Mc Kean TWP\
+Mc Kean second row to Mc Kean \
+\
+County 51: \
+Redstone 1 through 6 summed and allocated by VAP to Redstone 1 through 6.\
+Perry 1, 2, 3 TO perry 1, 2, 3.\
+\
+County 53: \
+Tionesta first row to Tionesta TWP\
+Tionesta second row to Tionesta\
+\
+County 55: \
+Green six precincts were summed and allocated to six precincts in VTD. Re-precincting. \
+St. Thomas three precincts combined and allocated to three VTDs. Re-precincting. \
+\
+Shippensburg was combined with VTD on the other side of county line by same name, and allocated by VAP.  \
+\
+Warren not matched. Unrealistic votes/VAP ratio. \
+\
+County 63: \
+Indiana 3-1, 3-2, 3-4 summed and allocated to three VTDs. Re-precincting. \
+\
+County 65: \
+Brockway to Brockway VTD 1 and Brockway VTD 2\
+Brookville 1, 2, 3 summed and allocated by VAP to Brookville VTD 1, 2, and 3\
+Oliver 1, 2, 3 summed and allocated to three VTDs. Re-precincting.\
+Perry 1 and 2 summed and allocated by VAP to Perry TWP 1 and Perry TWP 2.  \
+Punxsutaw 6 to 3. Precinct vote totals were summed and allocated to six wards in VTD file. \
+Reynoldsville  to Reynoldsville 1 and Reynoldsville 2.   \
+Washington to Washington East, Washington North and Washington West.\
+Winslow 1, 2, 3 summed and allocated to three VTDs. Re-precincting. \
+ \
+Young to Young North 1, Young North 2 and Young South\
+\
+County 69: \
+Archibald eight precincts summed and allocated to six VTDs. Re-precincting. \
+Carbondale Northeast, Northwest and South to three VTDs. Re-precincting. \
+Dunmore five precincts to four VTDs. Re-precincting. \
+Moosic five precincts were summed and allocated to four VTDs. \
+Taylor six precincts were summed and allocated to five VTDs.\
+Throop four precincts to four VTDs. Re-precincts. \
+\
+County 71: \
+Manheim 7 and 7B to Manheim 7 and 7A. \
+No match for Manheim 23\
+Lancaster Ward 9 five precincts to five VTDs. Re-precincting. \
+\
+County 75: \
+Union Green Pt. & Union Lickdale summed and allocated to two VTDs. \
+\
+County 77: \
+No match for Salisbury 5 in VTD\
+No match for Upper Macungie 5\
+\
+County 79: \
+Dallas Dist 1, 2, 3 summed TO Dallas Dist 1 and Dallas Dist 2\
+Dallas North and Dallas South TO Dallas TWP 1, 2, 3\
+Kingston TWP 1, 2, 3 To three VTDs. re-precincting. \
+Kingston Ward 10 precincts summed to Kingston WD eight precincts. \
+\
+County 83: \
+Eldred first row to Eldred TWP\
+Eldred second row to Eldred Voting District \
+\
+County 85: \
+Sandy lake first row Sandy lake \
+Sandy lake second row to Sandy lake TWP\
+\
+County 91: \
+There are about 10 precincts in Abington with votes/VAP ratios between 1 and 1.27.\
+Collegeville 1, 2, 3 To three vtds. re-precincting. \
+Franconia precincts were summed and allocated by VAP to eight VTDs\
+Whitpain 1 and 12 were summed and allocated by VAP to Whitpain TWP 1 and Whitpain TWP 12. \
+\
+\
+County 93: \
+Franconia eight precincts summed and allocated to four VTDs. \
+Lower Merion 10-1, 10-2, 10-3 to three VTDs. Votes/VAP ratios were off.\
+Lower Merion 11P 2A, 2B to Ward 11 Pct 02. \
+Plymouth Ward 2 3A, 3B, 3C combined to Plymouth 3-2.\
+Upper Dublin 3 1A and 1B to Upper Dublin 3-1\
+Upper Dublin 5 1(151) and 1(153), 2, 3 allocated to two VTDs.\
+Upper Dublin 6 3A and 3B to Upper Dublin 6-3.\
+\
+\
+County 95: \
+Bethlehem Ward 3 Dist 4 to Ward 3 Dist 4 and Ward 3 Dist 4H\
+Bethlehem 4 to Bethlehem 4 North and South. \
+Low votes/VAP ratio across Bethlehem. \
+County 99: \
+Liverpool row 1 to Liverpool TWP\
+Liverpool row 2 to Liverpool \
+\
+\
+County 101: \
+Philly Ward 20 has 11 rows in one file and 10 in the other. 20-11 not matched. \
+Philly Ward 24 has 19 rows in one and 17 in the VTD. No match for 24-18 and 24-19 in vote file. \
+Philly 27-8, 27-20, 27-21 summed and allocated by VAP to 27-8, 27-20, 27-21\
+Philly Ward 49  25 vs. 22. Votes/VAP ratio does not match well \
+For Ward 49, all 25 rows were summed and allocated to VTDs by VAP.\
+For Ward 5, all 29 rows were summed and allocated to VTDs by VAP.  \
+No match for Philly 8-22, 27-21, 52-7. High vote/VAP ratio.\
+\
+\
+County 103: \
+milford second row to MIlford TWP\
+milford first row to Milford\
+eulalia to eulalia two east fork and eulalia two eulalia\
+Oswayo first row to Oswayo TWP\
+Oswayo second row to Oswayo\
+Ulysses first row to ulysses\
+Ulysses second row to ulysses two\
+\
+County 107: \
+North Manheim 1, 2, 3 summed TO North Manheim 1, NOrth Manheim Mellots and North Manheim Adamsdale\
+Norwegian 1, 2, 3 summed TO Norwegian 1-09, 2-09, 3-09\
+Port Carbon 1 and 2 to Port Carbon. \
+Porter East and Porter West to Porter.\
+Shenandoah's 11 precincts were summed and allocated to 5 VTDs.\
+Tamaqua four precincts were summed TO Tamaqua North and Tamaqua South. \
+tremont first row to tremont \
+tremont second row to tremont twp\
+WAYNE districts 1, 2, 3 summed and allocated by VAP to Wayne TWP Dist 1, 2, 3\
+West Penn 1, 2, 3 summed TO West Penn Dist 1, Dist 2, Dist 3\
+\
+\
+County 109: \
+Addison first row to Addison TWP\
+Addison second row to Addison \
+\
+County 111: \
+No match for Seven Springs\
+\
+County 113: \
+Cherry first row to Cherry pct bernice\
+cherry second row to cherry two\
+colley first row to colley pct lopez\
+coolly second row to colley \
+Eagles Mere and Shresbury summed and allocated by VAP to Eagles Mere and Shrewsbury TWP \
+Middlecreek and Seven Springs were summed and allocated by VAP to Middlecreek TWP and Seven Springs\
+\
+County 115: \
+Great Bend first row to Great Bend TWP\
+Great Bend second row to Great Bend\
+New Milford first row to New Milford TWP\
+New Milford second row to New Milford\
+Oakland first row to Oakland TWP\
+Oakland second row to Oakland\
+Thompson first row to Thompson TWP\
+Thompson second row to Thompson\
+\
+County 117: \
+Liberty first row to Liberty TWP\
+LIberty second row to Liberty \
+Tioga first row to Tioga TWP\
+Tioga second row to Tioga\
+Westfield first row to Westfield TWP VTD 1\
+Westfield second row to Westfield \
+\
+County 123: \
+Sugar Grove first row to Sugar Grove TWP\
+Sugar Grove second row to Sugar Grove \
+\
+County 125: \
+California 2, 4 summed and allocated by VAP TO California VTD 2, 4, 5\
+Canonsburg 2 precincts 1 and 2 combined to Canonsburg 2 precincts 1, 2, 3. \
+Canonsburg 3 precincts 1 and 3 combined to Canonsburg 1, 2, 3, 4\
+Charleroi 4, 6 summed and allocated by VAP to Charleroi 4, 5, 6\
+Cross Creek 1, 2, 3 summed TO Cross Creek TWP 1, 2, 3, 4\
+No match for cross creek 4 in VTD. \
+Donora 1, 2, 4, 5, 7 summed and allocated to nine VTDs.\
+Donegal 1, 2, 3 summed and allocated to Donegal VTD 1 and Donegal VTD 2. \
+Not match for Charleroi 5, Cross Creek 4, Donegal, \
+Nottingham 1 and Nottingham 2 to Nottingham.\
+Union 2, 3, 6 summed and allocated by VAP to Union TWP 2, 3, 6 \
+\
+County 129: \
+no match for penn 5-3 \
+Penn TWP 4-1 and 4-3 summed and allocated by VAP to Penn TWP WD 4-1 and WD 4-3\
+\
+County 131: \
+Meshoppen first row to Meshoppen two\
+Meshoppen second row to Meshoppen\
+\
+County 133: \
+Red Lion 1, 2, 3 TO Red Lion 1, 2, 3. \
+\
+\
+The following precincts were not matched due to votes/VAP ratios over 1.5\
+-County 3: Mc Candless 3-4, O'Hara 4-1, Pittsburgh 16-11, 16-12, 16-13\
+-County 7: Aliquippa 9\
+\
+\
+\
+ \
+\
+}
